@@ -1,0 +1,13 @@
+[tar]
+extract = "tar xf${verbose} ${filename} -C ${directory}"
+compress = "tar caf${verbose} ${filename} -C ${directory} ."
+show = "tar tf${verbose} ${filename}"
+extensions = [".tar", ".tar.gz", ".bz2", ".xz"]
+verbose = "v"
+
+[zip]
+extract = "unzip ${filename} -d ${directory}"
+compress = "zip -r${verbose} ${filename} ${directory}"
+show = "unzip -l${verbose} ${filename}"
+extensions = [".zip"]
+verbose = "v"
