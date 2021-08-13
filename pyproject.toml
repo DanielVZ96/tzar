@@ -10,7 +10,7 @@ click = "^8.0.1"
 toml = "^0.10.2"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^6.2"
 
 [tool.poetry.scripts]
 tzar = 'tzar.cli:run'
