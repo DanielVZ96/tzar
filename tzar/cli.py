@@ -46,7 +46,13 @@ def compress(source, destination, verbose, extension):
     "--extension", "-e", help="Force the command to use a certain file extension."
 )
 def list(source, verbose, extension):
-    pass
+    CLITemplateCollection.from_config().show(
+        CLIArguments(
+            filename=source,
+            verbose=verbose,
+            forced_extension=extension,
+        )
+    )
 
 def run():
     cli()

@@ -1,19 +1,42 @@
 import os
 from pathlib import Path
+from typing import List
+from urllib import request
 
 import toml
-import xdg.BaseDirectory as xdg
+from click import confirm, get_app_dir, secho
+
+DEFAULT_CONFIG_URL = (
+    "https://raw.githubusercontent.com/DanielVZ96/tzar/main/config/default.toml"
+)
 
 
-def read():
+def read() -> List[dict]:
     if "TZAR_CONFIG" in os.environ:
         config_path = os.environ["TZAR_CONFIG"]
-        os.makedirs(config_path, exist_ok=True)
-    elif "APPDATA" in os.environ:
-        config_path = os.path.join(os.environ["APPDATA"], "tzar")
-        os.makedirs(config_path, exist_ok=True)
     else:
-        config_path = xdg.save_config_path("tzar")
+        config_path = get_app_dir("tzar")
+    os.makedirs(config_path, exist_ok=True)
     config_path = Path(config_path)
-    configs = config_path.glob("*.toml")
-    return [toml.load(config) for config in configs]
+    configs = [dict(toml.load(config)) for config in config_path.glob("*.toml")]
+    if configs:
+        return configs
+    elif prompt_config_download(config_path):
+        return read()
+
+    secho("No config files found!", fg="red", bold=True, err=True)
+    return []
+
+
+def prompt_config_download(config_path: Path) -> bool:
+    secho(
+        f"No config files where found. You can download the default one from: {DEFAULT_CONFIG_URL}",
+        fg="cyan",
+    )
+    if confirm(f"Download default config file?"):
+        filename, _ = request.urlretrieve(
+            DEFAULT_CONFIG_URL, config_path / "default.toml"
+        )
+        secho(f"Config downloaded to: {filename}", fg="green")
+        return True
+    return False

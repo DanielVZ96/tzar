@@ -6,7 +6,7 @@ from string import Template
 from typing import List
 
 
-from click import echo
+from click import echo, secho
 
 from tzar import config
 
@@ -14,8 +14,8 @@ from tzar import config
 @dataclass
 class CLIArguments:
     filename: str
-    directory: str
-    verbose: bool
+    directory: str = ""
+    verbose: bool = False
     forced_extension: str = ""
 
 
@@ -58,7 +58,7 @@ class CLITemplate:
 
     def run_show(self, args):
         command = self.build_command(
-            self.extract, args.filename, args.directory, args.verbose
+            self.show, args.filename, args.directory, args.verbose
         )
         return subprocess.run(command, shell=True).returncode == 0
 
@@ -87,12 +87,12 @@ class CLITemplateCollection:
         )
         for template in templates:
             if template.run_compress(args):
-                echo("Archive compressed successfully!")
+                secho("Archive compressed successfully!", fg="green")
                 return
         if len(templates) == 0:
-            echo("No command found for that file extension.", err=True)
+            secho("No command found for that file extension.", err=True, fg="red")
         else:
-            echo("All attempts failed!", err=True)
+            secho("All attempts failed!", err=True, fg="red")
 
     def extract(self, args: CLIArguments):
         templates = self.get_templates(
@@ -100,12 +100,12 @@ class CLITemplateCollection:
         )
         for template in templates:
             if template.run_extract(args):
-                echo("Archive extracted successfully!")
+                secho("Archive extracted successfully!", fg="green")
                 return
         if len(templates) == 0:
-            echo("No command found for that file extension.", err=True)
+            secho("No command found for that file extension.", err=True, fg="red")
         else:
-            echo("All attempts failed!", err=True)
+            secho("All attempts failed!", err=True, fg="red")
 
     def show(self, args: CLIArguments):
         templates = self.get_templates(
@@ -113,9 +113,8 @@ class CLITemplateCollection:
         )
         for template in templates:
             if template.run_show(args):
-                echo("Archive listed successfully!")
                 return
         if len(templates) == 0:
-            echo("No command found for that file extension.", err=True)
+            secho("No command found for that file extension.", err=True, fg="red")
         else:
-            echo("All attempts failed!", err=True)
+            secho("All attempts failed!", err=True, fg="red")
