@@ -10,9 +10,14 @@ Easy compression and extraction for any compression or archival format.
 ## Usage/Examples
 
 ```bash
-tzar compress large-dir compressed.tar.gz
+poetry run tzar compress large-dir compressed.tar.gz
 ```
 
-## Installation
+## Installation (dev)
 
-TODO
+TODO PACKAGE
+
+```
+poetry install
+export TZAR_CONFIG=$PWD/config 
+```
