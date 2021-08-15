@@ -1,7 +1,7 @@
 File extension(s)[1] ,Official name[3] 
-.bz2 ,bzip2 
-".F, .?XF[5] ",Freeze/melt [1] 
-.gz ,gzip 
+.bz2 ,bzip2 , x
+".F, .?XF[5] ",Freeze/melt [1] ,
+.gz ,gzip , x
 .lz ,lzip 
 .lz4 ,LZ4 
 .lzma ,lzma 
@@ -11,7 +11,7 @@ File extension(s)[1] ,Official name[3]
 .sz ,Snappy 
 .?Q? ,SQ 
 .?Z? ,CRUNCH 
-.xz ,xz 
+.xz ,xz ,x
 .z ,pack 
 .Z ,compress 
 .zst ,Zstandard 

@@ -1,4 +1,4 @@
-File extension(s)[1] ,Official name[3] 
+File extension(s)[1] ,Official name[3], done
 ".a, .ar ",Unix Archiver 
 .cpio ,cpio 
 .shar ,Shell archive 
@@ -7,4 +7,4 @@ File extension(s)[1] ,Official name[3]
 .lbr ,
 .mar ,Mozilla ARchive 
 .sbx ,SeqBox 
-.tar ,Tape archive 
+.tar ,Tape archive , x

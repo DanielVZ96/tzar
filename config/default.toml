@@ -11,3 +11,17 @@ compress = "zip -r${verbose} ${filename} ${directory}"
 show = "unzip -l${verbose} ${filename}"
 extensions = [".zip"]
 verbose = "v"
+
+[7z]
+extract = "7z x${verbose} ${filename} -o${directory}"
+compress = "7z a${verbose} ${filename} ${directory}"
+show = "7z l${verbose} ${filename}"
+extensions = [".7z"]
+verbose = ""
+
+[rar]
+extract = "unrar x${verbose} ${filename} ${directory}"
+compress = "rar a${verbose} ${filename} ${directory}"
+show = "unrar l${verbose} ${filename}"
+extensions = [".rar"]
+verbose = "v"
