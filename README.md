@@ -69,7 +69,9 @@ for these commands, and how you can ask for a verbose output.
 They can all contain the following template variables that will be replaced at runtime:
 
 -`verbose`: Defines how and where to ask for a verbose output (defined in the `verbose =` variable definition). 
+
 -`filename`: The name of the compressed file. Corresponds to `<source>` in the `extract` and `list` subcommands, and to `<destination>` in the `compress` subcommand
+
 -`directory`: The target directory. Corresponds to `<destination>` in the `extract` and `list` subcommands, and to `<source>` in the `compress` subcommand
 
 ## Why?
