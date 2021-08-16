@@ -49,7 +49,7 @@ The configuration file has the following format:
 extract = "command extract ${verbose} ${filename} ${directory}" 
 compress = "command compress ${verbose} ${directory} ${filename}" 
 show = "command list ${verbose} ${filename}" 
-extensions = [".ext1". ".ext2"]
+extensions = [".ext1",".ext2"]
 verbose = "-v" 
 
 [another command or format]
