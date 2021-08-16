@@ -2,6 +2,8 @@
 
 Easy compression and extraction for any compression or archival format.
 
+![Demo GIF](../assets/tzar.gif?raw=true)
+
 ## Usage/Examples
 
 ```bash
@@ -70,6 +72,18 @@ They can all contain the following template variables that will be replaced at r
 -`filename`: The name of the compressed file. Corresponds to `<source>` in the `extract` and `list` subcommands, and to `<destination>` in the `compress` subcommand
 -`directory`: The target directory. Corresponds to `<destination>` in the `extract` and `list` subcommands, and to `<source>` in the `compress` subcommand
 
+## Why?
+
+1) Because I think it's simpler
+
+You may think that this should be doable with aliases, but I tried and I couldn't. Maybe you can use the [`fuck`](https://github.com/nvbn/thefuck) app 
+or [`tldr`](https://github.com/tldr-pages/tldr) but I still feel it could be simpler to extract files (*wtf does xvzf even mean?*).
+
+2) Because I wanted to try the idea of Code as Configuration
+
+Maybe this sounds crazy, but I started this project by exploring the idea of storing the main behaviour of code in configuration files (in this case TOML), in order to 
+ease extensibility, reduce posible errors, and keep things simple. In my dayjob we tried this idea with my colleagues and the result is that changes that previously
+spawned several files or lines of code, are now reduced into 2 or 3 hard-to-fuck-up yaml lines. If this project gains traction I may write a blog post about this.
 
 ## TODO
 
