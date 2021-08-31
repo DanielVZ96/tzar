@@ -33,14 +33,16 @@ class CLITemplate:
             raise ValueError(
                 "File contains no extension. You can force to use one by adding the `--extension=` or `-e` parameter"
             )
-        return suffix in self.extensions
+        return any(suffix.endswith(extension) for extension in self.extensions)
 
     def build_command(
         self, command_template, filename: str, directory: str, verbose: bool
     ) -> str:
         verbose_arg = self.verbose if verbose else ""
         template = Template(command_template)
-        command = template.substitute(verbose=verbose_arg, directory=directory, filename=filename)
+        command = template.substitute(
+            verbose=verbose_arg, directory=directory, filename=filename
+        )
         echo(f"Running: {command}")
         return command
 
@@ -68,10 +70,12 @@ class CLITemplateCollection:
     cli_templates: List[CLITemplate]
 
     @classmethod
-    def from_config(cls: "CLITemplateCollection") -> "CLITemplateCollection":
+    def from_config(cls) -> "CLITemplateCollection":
         configs = config.read()
         return cls(
-            cli_templates=[CLITemplate(**fields) for c in configs for fields in c.values()]
+            cli_templates=[
+                CLITemplate(**fields) for c in configs for fields in c.values()
+            ]
         )
 
     def get_templates(self, file_path: Path, forced_extension: str = ""):

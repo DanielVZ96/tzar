@@ -25,7 +25,7 @@ class AliasedGroup(click.Group):
     cls=AliasedGroup,
     epilog="Tip: You can run any subcommand by only using it's first letter(s). E.g. instead of `extract`, just `e`, `ex`, `ext`, etc.",
 )
-@click.version_option("0.1.3", "--version", "-V")
+@click.version_option("0.1.4", "--version", "-V")
 def cli():
     pass
 
