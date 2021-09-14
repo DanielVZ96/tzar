@@ -25,18 +25,20 @@ class AliasedGroup(click.Group):
     cls=AliasedGroup,
     epilog="Tip: You can run any subcommand by only using it's first letter(s). E.g. instead of `extract`, just `e`, `ex`, `ext`, etc.",
 )
-@click.version_option("0.1.4", "--version", "-V")
+@click.version_option("0.1.5", "--version", "-V")
+@click.help_option("--help", "-h")
 def cli():
     pass
 
 
 @cli.command(no_args_is_help=True)
 @click.argument("source")
-@click.argument("destination")
+@click.argument("destination", required=False, default="")
 @click.option("--verbose", "-v", is_flag=True, help="Print more output.")
 @click.option(
     "--extension", "-e", help="Force the command to use a certain file extension."
 )
+@click.help_option("--help", "-h")
 def extract(source, destination, verbose, extension):
     CLITemplateCollection.from_config().extract(
         CLIArguments(filename=source, directory=destination, verbose=verbose)
@@ -50,6 +52,7 @@ def extract(source, destination, verbose, extension):
 @click.option(
     "--extension", "-e", help="Force the command to use a certain file extension."
 )
+@click.help_option("--help", "-h")
 def compress(source, destination, verbose, extension):
     CLITemplateCollection.from_config().compress(
         CLIArguments(
@@ -67,6 +70,7 @@ def compress(source, destination, verbose, extension):
 @click.option(
     "--extension", "-e", help="Force the command to use a certain file extension."
 )
+@click.help_option("--help", "-h")
 def list(source, verbose, extension):
     CLITemplateCollection.from_config().show(
         CLIArguments(

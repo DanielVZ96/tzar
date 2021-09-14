@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 from dataclasses import dataclass
@@ -38,6 +39,12 @@ class CLITemplate:
     def build_command(
         self, command_template, filename: str, directory: str, verbose: bool
     ) -> str:
+        if not directory:
+            directory = filename
+            for extension in sorted(self.extensions, key=lambda e: -len(e)):
+                directory = directory.replace(extension, "")
+            os.makedirs(directory, exist_ok=True)
+
         verbose_arg = self.verbose if verbose else ""
         template = Template(command_template)
         command = template.substitute(
